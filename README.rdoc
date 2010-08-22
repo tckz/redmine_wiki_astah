@@ -55,8 +55,10 @@ git://github.com/tckz/redmine_wiki_astah.git
     DISPLAY    : Point to your display(such as X Server).
 3. rake db:migrate:plugins RAILS_ENV=production
 4. Restart Redmine.
-
-5. To create embeded image, you must configure to execute Astah.export_diagrams() periodically.
+5. Login to Redmine as an Administrator 
+6. Setup wiki astah-macro settings in the Plugin settings panel
+    'secret key' : Specify any random text you like.
+7. To create embeded image, you must configure to execute Astah.export_diagrams() periodically.
     
     #{RAILS_ROOT}/script/runner Astah.export_diagrams -e production
     
