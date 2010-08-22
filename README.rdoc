@@ -15,8 +15,8 @@ Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diag
     {{astah_diagram(public:foo.asta, namespace/diagram)}}
     {{astah_diagram(source:/repo/path/foo.asta, namespace/diagram)}}
     {{astah_diagram(option=value...,public:foo.asta, namespace/diagram)}}
-
-	Note: .asta file path should be 'public:path/to/asta.asta' or 'source:repositorypath/to/asta.asta'.
+    
+    Note: .asta file path should be 'public:path/to/asta.asta' or 'source:repositorypath/to/asta.asta'.
     Note: Diagram path follows to astah*'s export function.
           If your diagram name (or namespae) contains '/', the function convert it to '_'.
 
