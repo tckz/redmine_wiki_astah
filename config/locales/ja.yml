@@ -1,0 +1,28 @@
+# Japanese translations for Ruby on Rails 
+# by Akira Matsuda (ronnie@dio.jp)
+# AR error messages are basically taken from Ruby-GetText-Package. Thanks to Masao Mutoh.
+
+ja:
+  activerecord:
+    models:
+      astah: astah
+    errors:
+      models:
+        astah:
+          attributes:
+            path:
+              invalid: "は、'{public|source}:ファイル' と指定してください。"
+
+  field_path: astaファイル
+
+  notice_diagram_not_exported: "図はまだエクスポートされていません。"
+  notice_diagram_not_found: "指定された図が見つかりません。"
+  error_too_few_macro_param: "マクロの引数が少なすぎます。.astaファイルと図へのパスを指定してください。"
+  error_retrieve: "astaファイルの取り出しでエラーがありました。{{message}}"
+  error_export: "図のエクスポートでエラーがありました。{{message}}"
+  error_export_run: "JudeCommandRunnerの実行に失敗しました。 {{status}}"
+
+  error_source_project_not_have_repository: "プロジェクトにはリポジトリがありません。"
+  error_source_entry_not_found: "リポジトリからエントリを取得できませんでした。"
+  error_source_is_dir: "指定されたパスはディレクトリです。"
+

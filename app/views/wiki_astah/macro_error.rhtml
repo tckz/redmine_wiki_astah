@@ -1,0 +1,16 @@
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag "wiki_astah.css", :plugin => "redmine_wiki_astah", :media => :all %>
+<% end %>
+
+<div class="wiki-astah-macro-error">
+	<strong>astah_diagram macro</strong>
+	<ul>
+		<li>asta=<%= h macro[:astah] %><br/>
+			diagram=<%= h macro[:diagram] %>
+		</li>
+		<% macro[:messages].each do |message| %>
+			<li><%= h message %></li>
+		<% end %>
+	</ul>
+</div>
+

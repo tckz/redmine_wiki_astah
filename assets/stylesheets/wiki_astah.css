@@ -1,0 +1,13 @@
+.wiki-astah-macro-image {
+	border: none;
+}
+
+.wiki-astah-macro-error {
+	border: 2px solid #dd0000;
+	padding: 0.2em;
+	margin-top: 0.4em;
+	margin-bottom: 0.4em;
+	color: #880000;
+	background-color: #ffe3e3;
+}
+

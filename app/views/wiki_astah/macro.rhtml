@@ -1,0 +1,28 @@
+<% content_for :header_tags do %>
+	<%= stylesheet_link_tag "wiki_astah.css", :plugin => "redmine_wiki_astah", :media => :all %>
+<% end %>
+
+<% 
+	url_for_rendered_img = url_for(
+		:controller => 'wiki_astah',
+		:action => 'diagram', 
+		:id => params[:id], 
+		:page => params[:page], 
+		:version => params[:version],
+		:astah => macro[:astah],
+		:diagram => macro[:diagram]
+	) 
+%>
+
+<%= link_to(
+	image_tag(url_for_rendered_img, 
+		:align => macro[:params][:align],
+		:width => macro[:params][:width],
+		:height => macro[:params][:height],
+		:class => "wiki-astah-macro-image"
+	), 
+	url_for_rendered_img, 
+	:target => macro[:params][:target]
+) %>
+
+
