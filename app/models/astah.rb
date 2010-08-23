@@ -90,7 +90,7 @@ class Astah < ActiveRecord::Base
 	def	diagram_exist?(name_diagram)
 		base = WikiAstahHelper.base_tmp_path(self)
 		path = WikiAstahHelper.diagram_path(self, name_diagram)
-		if self.shallow_path?(path, base[:base])
+		if self.shallow_path?(path, File.join(base[:base], base[:hash]))
 			return	false
 		end
 		File.exist?(path)
@@ -99,7 +99,7 @@ class Astah < ActiveRecord::Base
 	def	diagram(name_diagram)
 		base = WikiAstahHelper.base_tmp_path(self)
 		path = WikiAstahHelper.diagram_path(self, name_diagram)
-		if self.shallow_path?(path, base[:base])
+		if self.shallow_path?(path, File.join(base[:base], base[:hash]))
 			RAILS_DEFAULT_LOGGER.error "[wiki_astah]Too shallow path: #{name_diagram}"
 			raise "Too shallow path."
 		end
