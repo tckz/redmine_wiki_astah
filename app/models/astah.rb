@@ -61,9 +61,14 @@ class Astah < ActiveRecord::Base
 		end
 
 		RAILS_DEFAULT_LOGGER.info("[wiki_astah]Exporting image for pj=#{self.project.id}, ast=#{self.path}")
-		cmd_run = File.join([File.dirname(__FILE__), "..", "..", "run-astah.sh"])
-RAILS_DEFAULT_LOGGER.info("[wiki_astah]#{cmd_run}")
-		system(cmd_run, "-image", "all", "-f" , path_astah, "-t", "png", "-o", path_out)
+		if Redmine::Platform.mswin?
+			cmd_run = "run-astah.bat"
+		else
+			cmd_run = File.join([File.dirname(__FILE__), "..", "..", "run-astah.sh"])
+		end
+		cmd = "#{cmd_run} -image all -f \"#{path_astah}\" -t png -o \"#{path_out}\""
+		RAILS_DEFAULT_LOGGER.info("[wiki_astah]#{cmd}")
+		system(cmd)
 		RAILS_DEFAULT_LOGGER.info("[wiki_astah]Export image exit: #{$?.inspect}")
 
 		if !($?.exited? && $?.exitstatus == 0)
