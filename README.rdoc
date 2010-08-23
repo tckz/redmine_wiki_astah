@@ -1,7 +1,7 @@
 = Redmine Wiki Astah-macro plugin
 
 Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diagram which is described by astah*
-http://passing.breeze.cc/mt/archives/2010/08/astah-redmine-wiki-2.html
+ http://passing.breeze.cc/mt/archives/2010/08/astah-redmine-wiki-2.html
 
 == Features
 
