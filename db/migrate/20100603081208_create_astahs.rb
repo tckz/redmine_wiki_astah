@@ -2,7 +2,7 @@ class CreateAstahs < ActiveRecord::Migration
   def self.up
     create_table :astahs do |t|
 			t.column "project_id", :integer, :null => false
-			t.column "path", :text, :null => false
+			t.column "path", :string, :null => false
 			t.column "retrieved", :timestamp
 			t.column "exported", :timestamp
 			t.column "last_message", :text
