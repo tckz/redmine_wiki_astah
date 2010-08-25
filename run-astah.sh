@@ -1,6 +1,6 @@
 #!/bin/sh
 
-ASTAH_HOME=/home/aki/samba/ast/astah_professional
+ASTAH_HOME=/home/ast/astah_professional
 DISPLAY=127.0.0.1:2
 export DISPLAY
 
