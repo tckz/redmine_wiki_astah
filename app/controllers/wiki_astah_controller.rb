@@ -1,8 +1,7 @@
 
 class WikiAstahController < ApplicationController
   before_filter :find_wiki, :wiki_authorize
-
-	include	WikiAstahHelper
+  before_filter :find_astah
 
   def diagram
     @page = @wiki.find_page(params[:page], :project => @project)
@@ -39,12 +38,14 @@ private
     @project = Project.find(params[:id])
     @wiki = @project.wiki
     render_404 unless @wiki
-
-		@astah = Astah.find_by_path(@project, params[:astah])
-    render_404 unless @astah
   rescue ActiveRecord::RecordNotFound
     render_404
   end
+
+	def	find_astah
+		@astah = Astah.find_by_path(@project, params[:astah])
+    render_404 unless @astah
+	end
 end
 
 
