@@ -1,5 +1,9 @@
 require 'digest/sha2'
 require	'tempfile'
+require	'kconv'
+require	'singleton'
+require	'sync'
+
 
 module WikiAstahHelper
 	module	Retriver
@@ -67,7 +71,10 @@ module WikiAstahHelper
 
 		end
 	end
+end
 
+
+module	WikiAstahHelper
 	class Macro
 		def	initialize(view, wiki_content)
 			@content = wiki_content
@@ -84,7 +91,7 @@ module WikiAstahHelper
 					raise I18n.translate(:error_too_few_macro_param)
 				end
 
-				set_macro_params(args)
+				self.set_macro_params(args)
 
 				ast = Astah.find_by_path_or_new_astah(@content.project, path_astah)
 				if ast.new_record? && !ast.save
@@ -127,7 +134,6 @@ module WikiAstahHelper
 			end
 		end
 
-private
 		def	set_macro_params(args)
 			@macro_params = {
 			}
@@ -163,15 +169,57 @@ private
 				render_to_string :template => 'wiki_astah/macro', :layout => false, :locals => {:macro => p}
 		end
 	end
+end
 
 
+module	WikiAstahHelper
+	class	LocalEncoding
+		include	Singleton
+		include	Sync_m
+
+		@codepage = nil
+
+		def	to_local_encoded_path(path)
+			if Redmine::Platform.mswin?
+				cp = self.get_codepage
+				if cp == "932"
+					path = path.tosjis()
+				end
+			end
+			path
+		end
+
+		def	get_codepage
+			if @codepage == nil
+				self.set_codepage
+			end
+
+			@codepage
+		end
+
+		def	set_codepage
+			synchronize {
+				if @codepage == nil
+					@codepage = ""
+					chcp = `chcp`
+					if $?.exited? && $?.exitstatus == 0
+						chcp =~ /([0-9]+)\n/
+						@codepage = $1.to_s
+					end
+				end
+			}
+		end
+	end
+end
+
+
+module	WikiAstahHelper
 	def	self.cleanse_path(p)
 		if p =~ /^([^:]+)\s*:\s*(.*)$/
 			p = "#{$1}:#{$2.strip}"
 		end
 		p
 	end
-
 
 	def	self.base_tmp_path(ast)
 		secret = Setting.plugin_redmine_wiki_astah['secret'].to_s
@@ -220,6 +268,10 @@ private
 		fmt ||= ALLOWED_FORMAT["png"]
 
 		fmt
+	end
+
+	def	to_local_encoded_path(path)
+		LocalEncoding.instance.to_local_encoded_path(path)
 	end
 
 end

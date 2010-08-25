@@ -93,7 +93,7 @@ class Astah < ActiveRecord::Base
 		if self.shallow_path?(path, File.join(base[:base], base[:hash]))
 			return	false
 		end
-		File.exist?(path)
+		File.exist?(self.to_local_encoded_path(path))
 	end
 
 	def	diagram(name_diagram)
@@ -104,7 +104,7 @@ class Astah < ActiveRecord::Base
 			raise "Too shallow path."
 		end
 
-		File.open(path, "rb") { |f|
+		File.open(self.to_local_encoded_path(path), "rb") { |f|
 			f.read
 		}
 	end
