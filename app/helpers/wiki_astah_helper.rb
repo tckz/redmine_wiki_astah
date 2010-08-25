@@ -1,5 +1,4 @@
 require 'digest/sha2'
-require	'tempfile'
 require	'kconv'
 require	'singleton'
 require	'sync'
@@ -260,14 +259,6 @@ module	WikiAstahHelper
 		end
 
 		return false
-	end
-
-private 
-	def	decide_format(fmt)
-		fmt = ALLOWED_FORMAT[fmt.to_s.downcase]
-		fmt ||= ALLOWED_FORMAT["png"]
-
-		fmt
 	end
 
 	def	to_local_encoded_path(path)
