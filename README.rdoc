@@ -6,7 +6,7 @@ Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diag
 == Features
 
 * Add wiki macro {{astah_diagram}}
-* The macros make it link to image which is exported from .asta file.
+* The plugin makes it link to the image which is exported from .asta file.
 * Note: To create embeded image, you must run Astah.export_diagrams() periodically by some scheduler which like a cron.
 
 === {{astah_diagram}} macro
@@ -19,24 +19,25 @@ Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diag
     
     Note: .asta file path should be 'public:path/to/asta.asta' or 'source:repositorypath/to/asta.asta'.
     Note: Diagram path follows to astah*'s export function.
-          If your diagram name (or namespae) contains '/', the function convert it to '_'.
+          If your diagram name (or namespace) contains '/', the function convert it to '_'.
 
-* target={_blank|any}
-* align=value : Additional attr for IMG.
+* target=value : Additional attribute for IMG.
+   e.g.) _blank
+* align=value : Additional attribute for IMG.
    e.g.) right, left
-* width=value : Additional attr for IMG. 
-   e.g.) 100px, 200%
-* height=value : Additional attr for IMG. 
-   e.g.) 100px, 200%
+* width=value : Additional attribute for IMG. 
+   e.g.) 200px, 100%
+* height=value : Additional attribute for IMG. 
+   e.g.) 200px, 50%
 
 == Requirement
 
 * Redmine 1.0.0 or later.
-* Astah* professional 6.2 or later http://astah.change-vision.com/ja/
+* astah* professional 6.2 or later http://astah.change-vision.com/ja/
   * (For linux)
     * Extract zip version of its distribution.
     * Configure the environment able to run JudeCommandRunner.
-       for example. http://passing.breeze.cc/mt/archives/2010/05/astah-redmine-wiki-1.html 
+       For example. http://passing.breeze.cc/mt/archives/2010/05/astah-redmine-wiki-1.html 
 
 == Getting the plugin
 
@@ -61,7 +62,7 @@ git://github.com/tckz/redmine_wiki_astah.git
 3. rake db:migrate:plugins RAILS_ENV=production
 4. Restart Redmine.
 5. Login to Redmine as an Administrator 
-6. Setup wiki astah-macro settings in the Plugin settings panel
+6. Setup wiki astah-macro settings in the Plugin settings panel.
     'secret key' : Specify any random text you like.
 7. To create embeded image, you must configure to execute Astah.export_diagrams() periodically.
     
@@ -73,7 +74,7 @@ git://github.com/tckz/redmine_wiki_astah.git
           
           @echo off
           cd path\to\vendor\plugins\redmine_wiki_astah
-          path\to\ruby.exe "..\..\..\script\runner" Astah.export_diagrams -e production
+          path\to\ruby.exe ..\..\..\script\runner Astah.export_diagrams -e production
 
 == License
 
@@ -100,6 +101,6 @@ This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for
 * ruby-1.8.7-p248(rumix 1.00 http://ruby.morphball.net/rumix/)
 * sqlite3-ruby (1.3.1)
 * sqlite-3.7.0-1
-* redmine-1.0.0
+* redmine-1.0.1
 * astah* pro 6.2
 
