@@ -20,7 +20,7 @@ class Astah < ActiveRecord::Base
 	end
 
 	def	self.export_diagrams
-		RAILS_DEFAULT_LOGGER.error "[wiki_astah]export_diagrams: begin"
+		RAILS_DEFAULT_LOGGER.info "[wiki_astah]export_diagrams: begin"
 
     find(:all).each { |a|
 
@@ -42,7 +42,7 @@ class Astah < ActiveRecord::Base
 
 		}
 
-		RAILS_DEFAULT_LOGGER.error "[wiki_astah]export_diagrams: end"
+		RAILS_DEFAULT_LOGGER.info "[wiki_astah]export_diagrams: end"
 	end
 
 	def	export_diagram
