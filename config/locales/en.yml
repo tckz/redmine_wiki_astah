@@ -15,11 +15,11 @@ en:
   notice_diagram_not_exported: "The diagram has not been exported."
   notice_diagram_not_found: "Specified diagram is not found."
   error_too_few_macro_param: "Too few argument. This macro needs path to .asta and diagram name."
-  error_retrieve: "An error occured when retrieving asta file. {{message}}"
+  error_retrieve: "An error occured when retrieving .asta file. {{message}}"
   error_export: "An error occured when exporting the diagrams. {{message}}"
   error_export_run: "Failed to execute JudeCommandRunner. {{status}}"
 
-  error_source_project_not_have_repository: "The project not have repository."
-  error_source_entry_not_found: "Failed to get entry from repository."
+  error_source_project_not_have_repository: "The project does not have a repository."
+  error_source_entry_not_found: "Failed to get entry from the repository."
   error_source_is_dir: "Specified path is not file."
 
