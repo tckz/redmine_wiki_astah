@@ -19,9 +19,8 @@ module WikiAstahHelper
 			end
 
 			def	retrieve(out)
-				raise	"[wiki_astah] #{self.class}.retrieve(): Not implement yet."
+				raise	"[wiki_astah] #{self.class}.retrieve(): Not implemented yet."
 			end
-
 		end
 
 		class Public < Base
