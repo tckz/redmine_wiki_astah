@@ -6,8 +6,8 @@
 	url_for_rendered_img = url_for(
 		:controller => 'wiki_astah',
 		:action => 'diagram', 
+		:project_id => params[:project_id], 
 		:id => params[:id], 
-		:page => params[:page], 
 		:version => params[:version],
 		:astah => macro[:astah],
 		:diagram => macro[:diagram]

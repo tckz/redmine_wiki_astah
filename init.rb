@@ -4,8 +4,8 @@ Redmine::Plugin.register :redmine_wiki_astah do
 	name 'astah* Wiki-macro plugin'
 	author 'tckz'
   description 'Embed image of the diagram which is described by astah*'
-	version '0.0.3'
-	requires_redmine '1.0.0'
+	version '0.1.0'
+	requires_redmine :version_or_higher => '1.1.0'
   url "http://passing.breeze.cc/mt/" if respond_to?(:url)
 	settings :default => {
 			"secret" => "specify some random text",

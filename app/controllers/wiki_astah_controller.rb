@@ -4,7 +4,7 @@ class WikiAstahController < ApplicationController
   before_filter :find_astah
 
   def diagram
-    @page = @wiki.find_page(params[:page], :project => @project)
+    @page = @wiki.find_page(params[:id], :project => @project)
     if @page.nil?
       render_404
 			return
@@ -35,7 +35,7 @@ private
   end
 
   def find_wiki
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:project_id])
     @wiki = @project.wiki
     render_404 unless @wiki
   rescue ActiveRecord::RecordNotFound
