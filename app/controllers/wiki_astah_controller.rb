@@ -1,5 +1,7 @@
 
 class WikiAstahController < ApplicationController
+	unloadable
+
   before_filter :find_wiki, :wiki_authorize
   before_filter :find_astah
 

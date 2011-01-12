@@ -227,7 +227,7 @@ module	WikiAstahHelper
 		head = $1
 		{
 			:base => File.join([RAILS_ROOT, 'tmp', 'redmine_wiki_astah', 
-				ast.project.id.to_s,
+				ast.project_id.to_s,
 				head,
 			]),
 			:hash => hashed

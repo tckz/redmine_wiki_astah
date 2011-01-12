@@ -82,7 +82,6 @@ This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for
 
 == Known Issues
 
-* Run under 'production' only.
 * ver 0.0.1: If database is MySQL, db:migrate:plugins fails.
    Please drop table astahs manually. And download newest version and try to migrate again.
 
