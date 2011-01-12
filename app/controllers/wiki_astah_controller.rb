@@ -18,13 +18,7 @@ class WikiAstahController < ApplicationController
       return
     end
 
-    begin
-			diagram = @astah.diagram(params[:diagram])
-    rescue => e
-			RAILS_DEFAULT_LOGGER.error "[wiki_astah]diagram(): #{e}"
-      render_404
-			return
-    end
+		diagram = @astah.diagram(params[:diagram])
 		render :text => diagram, :layout => false, :content_type => 'image/png'
   end
 
