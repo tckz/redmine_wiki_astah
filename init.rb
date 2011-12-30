@@ -4,7 +4,7 @@ Redmine::Plugin.register :redmine_wiki_astah do
 	name 'astah* Wiki-macro plugin'
 	author 'tckz'
   description 'Embed image of the diagram which is described by astah*'
-	version '0.1.0'
+	version '0.1.1'
 	requires_redmine :version_or_higher => '1.1.0'
   url "http://passing.breeze.cc/mt/" if respond_to?(:url)
 	settings :default => {
@@ -15,9 +15,9 @@ Redmine::Plugin.register :redmine_wiki_astah do
 		desc <<'EOF'
 Embed image which is exported from the diagram which is described by astah*.
 
-  !{{astah_diagram(public:foo.asta, namespace/diagram)}}
-  !{{astah_diagram(source:/repo/path/foo.asta, namespace/diagram)}}
-  !{{astah_diagram(option=value...,public:foo.asta, namespace/diagram)}}
+  !{{astah_diagram(asta=public:foo.asta, namespace/diagram)}}
+  !{{astah_diagram(asta=source:/repo/path/foo.asta, namespace/diagram)}}
+  !{{astah_diagram(option=value...,asta=public:foo.asta, namespace/diagram)}}
 
 * options are:
 ** target={_blank|any}

@@ -84,13 +84,13 @@ module	WikiAstahHelper
 
 		def	astah_diagram(args)
 			begin
-				name_diagram = args.pop.to_s.strip
-				path_astah = args.pop.to_s.strip
+				self.set_macro_params(args)
+
+				name_diagram = @macro_params[:diagram] || args.pop.to_s.strip
+				path_astah = @macro_params[:asta] || args.pop.to_s.strip
 				if name_diagram == "" || path_astah == ""
 					raise I18n.translate(:error_too_few_macro_param)
 				end
-
-				self.set_macro_params(args)
 
 				ast = Astah.find_by_path_or_new_astah(@content.project, path_astah)
 				if ast.new_record? && !ast.save
@@ -138,6 +138,8 @@ module	WikiAstahHelper
 			}
 
 			need_value = {
+				:asta => true,
+				:diagram => true,
 				:target => true,
 				:align => true,
 				:width => true,
