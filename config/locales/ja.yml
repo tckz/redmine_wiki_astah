@@ -11,7 +11,7 @@ ja:
 
   field_path: astaファイル
 
-  notice_diagram_not_exported: "astaファイルが存在しないか、まだエクスポートされていません。"
+  notice_diagram_not_exported: "図はまだエクスポートされていません。"
   notice_diagram_not_found: "指定された図が見つかりません。"
   error_too_few_macro_param: "マクロの引数が少なすぎます。.astaファイルと図へのパスを指定してください。"
   error_retrieve: "astaファイルの取り出しでエラーがありました。%{message}"
