@@ -84,10 +84,10 @@ module	WikiAstahHelper
 
 		def	astah_diagram(args)
 			begin
-				self.set_macro_params(args)
+				rest_args = self.set_macro_params(args)
 
-				name_diagram = @macro_params[:diagram] || args.pop.to_s.strip
-				path_astah = @macro_params[:asta] || args.pop.to_s.strip
+				name_diagram = @macro_params[:diagram] || rest_args.pop.to_s.strip
+				path_astah = @macro_params[:asta] || rest_args.pop.to_s.strip
 				if name_diagram == "" || path_astah == ""
 					raise I18n.translate(:error_too_few_macro_param)
 				end
@@ -138,7 +138,7 @@ module	WikiAstahHelper
 			@macro_params = {
 			}
 
-			need_value = {
+			known_parameter = {
 				:asta => true,
 				:diagram => true,
 				:target => true,
@@ -147,18 +147,31 @@ module	WikiAstahHelper
 				:height => true,
 			}
 
+			rest_args = []
 			args.each {|a|
+				if rest_args.size > 0
+					rest_args.push(a)
+					next
+				end
+
 				k, v = a.split(/=/, 2).map { |e| e.to_s.strip }
 				if k.nil? || k == ""
+					rest_args.push(a)
 					next
 				end
 
 				sym = k.intern
-				if need_value[sym] && (v.nil? || v.to_s == "")
+				if !known_parameter.has_key?(sym)
+					rest_args.push(a)
+				end
+
+				if known_parameter[sym] && (v.nil? || v.to_s == "")
 					raise "macro parameter:#{k} needs value"
 				end
 				@macro_params[sym] = v.nil? ? true : v.to_s
 			}
+
+			rest_args
 		end
 	end
 
