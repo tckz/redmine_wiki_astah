@@ -32,7 +32,7 @@ module WikiAstahHelper
 				path_public = File.expand_path(File.join([Rails.root, 'public']))
 				path_src = File.expand_path(File.join([path_public, @path]))
 				if self.shallow_path?(path_src, path_public)
-					raise "Invalid path: {@path}"
+					raise "Too shallow path: #{@path}"
 				end
 
 				FileUtils.mkdir_p(File.dirname(out))
