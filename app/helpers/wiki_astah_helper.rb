@@ -163,6 +163,7 @@ module	WikiAstahHelper
 				sym = k.intern
 				if !known_parameter.has_key?(sym)
 					rest_args.push(a)
+					next
 				end
 
 				if known_parameter[sym] && (v.nil? || v.to_s == "")
