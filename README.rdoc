@@ -53,10 +53,9 @@ git://github.com/tckz/redmine_wiki_astah.git
 
 == Install
 
-1. Copy the plugin tree into #{RAILS_ROOT}/vendor/plugins/
+1. Copy the plugin tree into #{RAILS_ROOT}/plugins/
     e.g.)
-    #{RAILS_ROOT}/vendor/
-      plugins/
+    #{RAILS_ROOT}/plugins/
         redmine_wiki_astah/
 2. Configure variable value in script.
     (For linux)Configure variable value in redmine_wiki_astah/run-astah.sh
@@ -73,7 +72,7 @@ git://github.com/tckz/redmine_wiki_astah.git
     'secret key' : Specify any random text you like.
 7. To create embeded image, you must configure to execute Astah.export_diagrams() periodically.
     
-    #{RAILS_ROOT}/script/runner Astah.export_diagrams -e production
+    #{RAILS_ROOT}/script/rails runner Astah.export_diagrams -e production
     
     Note: Please take care of the user who runs redmine and Astah.export_diagrams.
     Note: If you execute the method on Windows, you must make sure that run-astah.bat on the PATH.
@@ -81,7 +80,7 @@ git://github.com/tckz/redmine_wiki_astah.git
           
           @echo off
           cd path\to\vendor\plugins\redmine_wiki_astah
-          path\to\ruby.exe ..\..\..\script\runner Astah.export_diagrams -e production
+          path\to\ruby.exe ..\..\..\script\rails runner Astah.export_diagrams -e production
 
 == License
 

@@ -20,7 +20,7 @@ class Astah < ActiveRecord::Base
 	end
 
 	def	self.export_diagrams
-		RAILS_DEFAULT_LOGGER.info "[wiki_astah]export_diagrams: begin"
+		Rails::logger.info "[wiki_astah]export_diagrams: begin"
 
     find(:all).each { |a|
 
@@ -35,14 +35,14 @@ class Astah < ActiveRecord::Base
 
 			rescue => e
 				a.last_message = "#{phase},#{e}"
-				RAILS_DEFAULT_LOGGER.error "[wiki_astah]Failed to export diagram for pj=#{a.project.id}, ast=#{a.path}: #{e}"
+				Rails::logger.error "[wiki_astah]Failed to export diagram for pj=#{a.project.id}, ast=#{a.path}: #{e}"
 			end
 
 			a.save
 
 		}
 
-		RAILS_DEFAULT_LOGGER.info "[wiki_astah]export_diagrams: end"
+		Rails::logger.info "[wiki_astah]export_diagrams: end"
 	end
 
 	def	export_diagram
@@ -55,21 +55,21 @@ class Astah < ActiveRecord::Base
 
 		if File.exist?(path_export_root)
 			if self.last_hash == hash_astah
-				RAILS_DEFAULT_LOGGER.info("[wiki_astah]Skip to export image for pj=#{self.project.id}, ast=#{self.path}")
+				Rails::logger.info("[wiki_astah]Skip to export image for pj=#{self.project.id}, ast=#{self.path}")
 				return
 			end
 		end
 
-		RAILS_DEFAULT_LOGGER.info("[wiki_astah]Exporting image for pj=#{self.project.id}, ast=#{self.path}")
+		Rails::logger.info("[wiki_astah]Exporting image for pj=#{self.project.id}, ast=#{self.path}")
 		if Redmine::Platform.mswin?
 			cmd_run = "run-astah.bat"
 		else
 			cmd_run = File.join([File.dirname(__FILE__), "..", "..", "run-astah.sh"])
 		end
 		cmd = "#{cmd_run} -image all -f \"#{path_astah}\" -t png -o \"#{path_out}\""
-		RAILS_DEFAULT_LOGGER.info("[wiki_astah]#{cmd}")
+		Rails::logger.info("[wiki_astah]#{cmd}")
 		system(cmd)
-		RAILS_DEFAULT_LOGGER.info("[wiki_astah]Export image exit: #{$?.inspect}")
+		Rails::logger.info("[wiki_astah]Export image exit: #{$?.inspect}")
 
 		if !($?.exited? && $?.exitstatus == 0)
 			raise I18n.translate(:error_export_run, {:status => $?.inspect})
@@ -100,7 +100,7 @@ class Astah < ActiveRecord::Base
 		base = WikiAstahHelper.base_tmp_path(self)
 		path = WikiAstahHelper.diagram_path(self, name_diagram)
 		if self.shallow_path?(path, File.join(base[:base], base[:hash]))
-			RAILS_DEFAULT_LOGGER.error "[wiki_astah]Too shallow path: #{name_diagram}"
+			Rails::logger.error "[wiki_astah]Too shallow path: #{name_diagram}"
 			raise "Too shallow path."
 		end
 

@@ -29,7 +29,7 @@ module WikiAstahHelper
 		class Public < Base
 			include WikiAstahHelper
 			def	retrieve(out)
-				path_public = File.expand_path(File.join([RAILS_ROOT, 'public']))
+				path_public = File.expand_path(File.join([Rails.root, 'public']))
 				path_src = File.expand_path(File.join([path_public, @path]))
 				if self.shallow_path?(path_src, path_public)
 					raise "Invalid path: {@path}"
@@ -97,7 +97,7 @@ module	WikiAstahHelper
 					@view.controller.render_macro_error({
 						:astah => path_astah,
 						:diagram => name_diagram,
-						:messages => ast.errors.full_messages
+						:messages => [ast.errors.full_messages]
 					})
 				elsif ast.diagram_exist?(name_diagram)
 					@view.controller.render_macro_html({
@@ -110,7 +110,7 @@ module	WikiAstahHelper
 					@view.controller.render_macro_error({
 						:astah => path_astah,
 						:diagram => name_diagram,
-						:messages => I18n.translate(:notice_diagram_not_found)
+						:messages => [I18n.translate(:notice_diagram_not_found)]
 					})
 				else
 					mes = [
@@ -126,6 +126,7 @@ module	WikiAstahHelper
 					})
 				end
 			rescue => e
+				Rails.logger.warn "[wiki_astah]#{e.backtrace.join("\n")}"
 				# wiki_formatting.rb(about redmine 1.0.0) catch exception and write e.to_s into HTML. so escape message.
 				ex = RuntimeError.new(ERB::Util.html_escape(e.message))
 				ex.set_backtrace(e.backtrace)
@@ -228,7 +229,7 @@ module	WikiAstahHelper
 		hashed =~ /^(..)/
 		head = $1
 		{
-			:base => File.join([RAILS_ROOT, 'tmp', 'redmine_wiki_astah', 
+			:base => File.join([Rails.root, 'tmp', 'redmine_wiki_astah', 
 				ast.project_id.to_s,
 				head,
 			]),
