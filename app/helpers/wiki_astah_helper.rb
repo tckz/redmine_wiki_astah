@@ -97,7 +97,7 @@ module	WikiAstahHelper
 					@view.controller.render_macro_error({
 						:astah => path_astah,
 						:diagram => name_diagram,
-						:messages => [ast.errors.full_messages]
+						:messages => ast.errors.full_messages
 					})
 				elsif ast.diagram_exist?(name_diagram)
 					@view.controller.render_macro_html({
