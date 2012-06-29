@@ -21,4 +21,5 @@ ja:
   error_source_project_not_have_repository: "プロジェクトにはリポジトリがありません。"
   error_source_entry_not_found: "リポジトリからエントリを取得できませんでした。"
   error_source_is_dir: "指定されたパスはディレクトリです。"
+  error_too_shallow_path: "指定されたパスは浅すぎます。"
 
