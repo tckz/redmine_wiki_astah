@@ -37,14 +37,16 @@ Note: After redmine 1.3.0, The sequence of expanding wiki links is changed. So, 
 
 == Requirement
 
-* Redmine 1.1.0 or later.
+* Redmine 2.1.0 or later.
+* ruby 1.9
 * astah* professional 6.2 or later http://astah.change-vision.com/ja/
   * (For linux)
-    * Extract zip version of its distribution.
     * Configure the environment able to run JudeCommandRunner.
        For example. http://passing.breeze.cc/mt/archives/2010/05/astah-redmine-wiki-1.html 
 
 == Getting the plugin
+
+https://github.com/tckz/redmine_wiki_astah
 
 A copy of the plugin can be downloaded from http://passing.breeze.cc/mt/redmine_plugin
 
@@ -65,7 +67,7 @@ git://github.com/tckz/redmine_wiki_astah.git
                    If you use older astah*, you should setup DISPLAY.
     (For Windows)Configure variable value in redmine_wiki_astah/run-astah.bat
       ASTAH_HOME : Point the directory where astah-pro.jar is exist.
-3. rake db:migrate:plugins RAILS_ENV=production
+3. rake redmine:plugins:migrate RAILS_ENV=production 
 4. Restart Redmine.
 5. Login to Redmine as an Administrator 
 6. Setup wiki astah-macro settings in the Plugin settings panel.
@@ -94,9 +96,9 @@ See COPYRIGHT.txt and GPL.txt for details.
 
 == My environment
 
-* CentOS 6.2 x64
-* ruby-1.8.7-p352
-* mysql-server-5.1.52-1.el6_0.1.x86_64
-* redmine-1.3.0
-* astah* pro 6.5.1
+* CentOS 6.3 x64
+* ruby-1.9.3p194
+* mysql-server-5.1.61-4.el6.x86_64
+* redmine-2.1.0
+* astah* pro 6.6.3
 
