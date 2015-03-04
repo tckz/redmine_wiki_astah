@@ -6,23 +6,25 @@ class Astah < ActiveRecord::Base
 
   belongs_to :project
 
-  validates_format_of :path, :with => /^(public|source):/
+	attr_accessible :path, :project_id
+  validates_format_of :path, :with => /\A(public|source):/
 
 	def	self.find_by_path(project, path)
-    find(:first, :conditions => {
+    Astah.find_by(
 			:path => WikiAstahHelper.cleanse_path(path), 
 			:project_id => project.id
-		})
+		)
 	end
 
 	def	self.find_by_path_or_new_astah(project, path)
+		Rails::logger.info "[wiki_astah]#{path}"
     find_by_path(project, path) || Astah.create(:path => path, :project_id => project.id)
 	end
 
 	def	self.export_diagrams
 		Rails::logger.info "[wiki_astah]export_diagrams: begin"
 
-    find(:all).each { |a|
+    Astah.all.each { |a|
 
 			phase = nil
 			path_astah = WikiAstahHelper.astah_path(a)

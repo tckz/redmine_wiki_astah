@@ -7,7 +7,7 @@ require	'sync'
 module WikiAstahHelper
 	module	Retriver
 		def	self.get_retriever(ast)
-			if ast.path =~ /^(public|source):(.*)$/
+			if ast.path =~ /\A(public|source):(.*)$/
 				klass = eval "WikiAstahHelper::Retriver::#{$1.strip.camelize}"
 				klass.new(ast.project, $2.to_s.strip)
 			else
@@ -281,6 +281,14 @@ module	WikiAstahHelper
 		LocalEncoding.instance.to_local_encoded_path(path)
 	end
 
+	class ViewListener < Redmine::Hook::ViewListener
+		def view_layouts_base_html_head(context)
+			context[:controller].send(:render_to_string,
+				:template => 'wiki_astah/_head',
+				:layout => false,
+				:locals => {:context => context})
+		end
+	end
 end
 
 # vim: set ts=2 sw=2 sts=2:
