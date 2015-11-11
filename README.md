@@ -1,15 +1,6 @@
----
-title: preview3.md
-date: '2015-11-11T23:55:00+09:00'
-categories:
-- git
-slug: readme3
-type: post
----
-
 # Redmine Wiki Astah-macro plugin
 
-Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diagram which is described by astah*
+Redmine Wiki Astah-macro plugin allows Redmine's wiki to embed image of the diagram which is described by astah*  
  http://passing.breeze.cc/mt/archives/2010/08/astah-redmine-wiki-2.html
 
 ## Features
